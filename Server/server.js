@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 
 const app = new express();
 
-var fullPath =   path.join(__dirname ,'/../public');
+var fullPath =   path.join(__dirname ,'../public');
 
 console.log(fullPath);
 
