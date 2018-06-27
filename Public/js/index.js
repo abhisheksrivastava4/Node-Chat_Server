@@ -12,7 +12,7 @@ socket.on('newMessage',function (Message) {
     console.log('New Message:', Message);
 })
 
-socket.emit('createMessage',{
- from: 'abhi@example.com',
- text: 'Yup, that works for me'
-});
+//socket.emit('createMessage',{
+// from: 'abhi@example.com',
+// text: 'Yup, that works for me'
+//});
