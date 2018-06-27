@@ -22,7 +22,18 @@ io.on('connection',(socket)=>{
 //        text: 'Hi, how r you?',
 //        date: 26/06/2018
 //      });
-      
+    socket.emit('newMessage',{
+        from : 'Admin',
+        text : 'Welcome to the chat app',
+        date: new Date().getTime()
+    });  
+
+    socket.broadcast.emit('newMessage',{
+        from : 'Admin',
+        text : 'New User Joined',
+        date: new Date().getTime() 
+    }); 
+
     socket.on('createMessage',(Message)=>{
         console.log('Create Message:',Message);
         io.emit('newMessage',{
