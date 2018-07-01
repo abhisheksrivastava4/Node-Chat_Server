@@ -1,7 +1,19 @@
 var socket = io();
 socket.on('connect', function () {
-    console.log('connected to server');
+    var params = jQuery.deparam(window.location.search);
+    console.log(params);
+    socket.emit('join',params,function(err){
+       if(err){
+        alert('Name and room are required properties');
+        window.location.href='/';
+       }
+       else
+       {
+
+       }
+    })
 })
+
 
 socket.on('disconnect', function () {
     console.log('disconnected to server');

@@ -1,53 +1,32 @@
-<!DOCTYPE=HTML>
-<Head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/styles.css">
-</Head>
-<body class="chat">
-    <div class="chat__sidebar">
-     <h3>People<h3>
-         <div id="Users"></div>
-    </div>
+<!DOCTYPE html>
+<html>
 
-    <div class="chat__main">
-            <ol id="messages" class="chat__messages"></ol>
-            <div class="chat__footer">
-                    <form id="Message-form">
-                    <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
-                    <button>Send</button>
-                    </form>
-                    <button id="send-location">Send location</button>
-            </div>
-    </div>
+<head>
+  <meta charset="utf-8">
+  <title>Join | ChatApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
 
-    <script id="message-template" type="text/template">
-    <li class="message">
-        <div class="message__title">
-            <h4>{{from}}</h4>
-            <span>{{createdAT}}</span>
-        </div>
-        <div class="Message__body">
-            <p>{{text}}</p>
-        </div>
-    </li>
-    </script>
-
-    <script id="location-message-template" type="text/template">
-        <li class="message">
-            <div class="message__title">
-                <h4>{{from}}</h4>
-                <span>{{createdAT}}</span>
-            </div>
-            <div class="Message__body">
-                <a href="{{url}}" target="_blank">My Current Location</a>
-            </div>
-        </li>
-        </script>
-    
-    
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/libs/jquery-3.3.1.slim.js"></script>
-    <script src="/js/libs/moment.js"></script>
-    <script src="/js/libs/mustache.js"></script>
-    <script src="/js/index.js"></script>
+<body class="centered-form">
+  <div class="centered-form__form">
+    <form action="/chat.html">
+      <div class="form-field">
+        <h3>Join a Chat<h3>
+      </div>
+      <div class="form-field">
+        <label>Display name</label>
+        <input type="text" name="name" autofocus/>
+      </div>
+      <div class="form-field">
+        <label>Room name</label>
+        <input type="text" name="room"/>
+      </div>
+      <div class="form-field">
+        <button>Join</button>
+      </div>
+    </form>
+  </div>
 </body>
+
+</html>

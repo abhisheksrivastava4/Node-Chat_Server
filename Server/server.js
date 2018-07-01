@@ -4,11 +4,11 @@ const socketIO = require('socket.io');
 const http = require('http');
 
 const { generateMessage, generateLocationMessage } = require('./Utils/Message');
+const { isRealString } = require('./Utils/validation')
 
 const port = process.env.PORT || 3000;
 
 const app = new express();
-
 var server = http.createServer(app);
 var io = socketIO(server);
 
@@ -19,9 +19,16 @@ app.use(express.static(fullPath));
 io.on('connection', (socket) => {
     console.log('New User Connected');
 
-    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+    socket.on('join', (params, callback) => {
+        if (!isRealString(params.name) || !isRealString(params.room)) {
 
-    socket.broadcast.emit('newMessage', generateMessage('Admin', 'New User Joined'));
+            callback('Name and room are required properties')
+        }
+        socket.join(params.room);
+        socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+        socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined`));
+        callback();
+    })
 
     socket.on('createMessage', (Message, callBack) => {
         console.log('Create Message:', Message);
@@ -35,7 +42,6 @@ io.on('connection', (socket) => {
         console.log('user was disconnected');
     })
 });
-
 
 server.listen(port, () => {
     console.log(`server up on port ${port}`);
