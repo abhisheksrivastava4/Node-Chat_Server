@@ -22,9 +22,15 @@ io.on('connection', (socket) => {
     console.log('New User Connected');
 
     socket.on('join', (params, callback) => {
-        if (!isRealString(params.name) || !isRealString(params.room)) {
-
-            callback('Name and room are required properties')
+        params.room = params.room.toUpperCase();
+        params.name = params.name.toUpperCase();// + params.name.slice(1).toLowerCase(); //params.name.toUpperCase();
+        if (!isRealString(params.name) || !isRealString(params.room)) 
+        {
+            callback('Name and room are required properties');
+        }
+        else if(users.getUserByName(params.name,params.room))
+        {
+            callback('Username already taken please enter a new username.'); 
         }
         socket.join(params.room);
 

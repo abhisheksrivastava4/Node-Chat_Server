@@ -30,9 +30,20 @@ class Users {
       var namesArray = users.map((user)=> user.name);
       return namesArray;
     }
+
+    getUserByName(name,room){
+        var nameListArray = this.getUserList(room);
+        console.log(nameListArray)
+        if(nameListArray[0]===name)
+        {
+            return true;
+        }
+        else
+        return false;
+    }
 }
-/*
-var users = new Users();
+
+/* var users = new Users();
  var persons = [{
  id:1,
  name:"a",
@@ -44,20 +55,25 @@ var users = new Users();
     room:"A"
 },
 {
-    id:2,
+    id:4,
     name:"c",
     room:"C"
 },
+{
+    id:3,
+    name:"c",
+    room:"C"
+}
 ]
 users.addUser(persons[0].id, persons[0].name, persons[0].room);
 users.addUser(persons[1].id, persons[1].name, persons[1].room);
 users.addUser(persons[2].id, persons[2].name, persons[2].room);
 
-console.log(users.getUserList("A"));
+//console.log(users.getUserList("A"));
 
-console.log(users.removeUser(20));
+//console.log(users.removeUser(20));
 
-console.log(users.getUserList("A"));
-*/
+console.log(users.getUserByName('c','A'));*/
+
 
 module.exports = {Users}

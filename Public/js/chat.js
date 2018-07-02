@@ -21,7 +21,7 @@ socket.on('connect', function () {
     console.log(params);
     socket.emit('join',params,function(err){
        if(err){
-        alert('Name and room are required properties');
+        alert(err);
         window.location.href='/';
        }
        else
